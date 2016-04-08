@@ -134,6 +134,42 @@ def transfer emp_arr
 	end while choice != 'N'
 end
 
+def trumpify emp_arr
+	count = 0
+	begin
+		print "Would you like to remove "
+		print (count == 0)? "an" : "another"
+		print " employee from the records? (Y/N)\n"
+		choice = gets.chomp.upcase
+		case choice 
+			when 'Y'
+				puts "Which employee would you like to remove?"
+				emp_arr.size.times do |i|
+					puts "#{i + 1}. #{emp_arr[i].name}"
+				end
+				puts "Please enter the number next to his/her name:"
+				choice2 = gets.chomp.to_i
+				if emp_arr[choice2 - 1]
+					puts "Please enter this employee's PIN"
+					pin = gets.chomp.to_i
+					if emp_arr[choice2 - 1].emp_num == pin
+						puts "Access Granted...#{emp_arr[choice2 - 1].name} Deleted"
+						puts "Press Enter to continue"
+						gets
+						return emp_arr.pop 
+					else
+						puts "Access Denied"
+					end
+				else
+					puts "Sorry that was an incorrect index"
+				end
+			when 'N'
+				return nil
+			else
+				puts "Sorry that was not a valid response"
+		end
+	end while choice != 'N'
+end
 #==================================================================
 #                            Main
 
@@ -148,7 +184,8 @@ begin
 	puts ""
 	puts ("Please enter a number from the menu below:".center(line_width))
 	puts "1. Add Employees\n2. View Existing Records"
-	puts "3. Modify Employee Locations\n4. Quit"
+	puts "3. Modify Employee Locations\n4. Remove Employee"
+	puts "5. Quit"
 	puts "==========================================================="
 	selection = gets.chomp.to_i
 	case selection
@@ -165,14 +202,17 @@ begin
 		when 3
 			system "cls"
 			transfer emp_array
-			puts "\nPress Enter to continue"
-			gets
 		when 4
+			system "cls"
+			trumpify emp_array
+		when 5
 			puts "Exiting program..."
 		else 
 			puts "Sorry that was an invalid response"
+			puts "Press Enter to continue"
+			gets
 		end
-end while selection != 4
+end while selection != 5
 
 
 # emp_array = []
