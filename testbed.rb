@@ -134,6 +134,10 @@ def transfer emp_arr
 	end while choice != 'N'
 end
 
+#Name: trumpify
+#Params: Array of Employee objects from main
+#Returns: Employee object deleted, or nil if deletion did not occur
+#Purpose: Delete Employee objects from the record
 def trumpify emp_arr
 	count = 0
 	begin
@@ -192,8 +196,6 @@ begin
 		when 1
 			system "cls"
 			init_employees emp_array
-			# puts "Press any key to continue"
-			# gets
 		when 2
 			system "cls"
 			Employee.get_employees
@@ -213,13 +215,3 @@ begin
 			gets
 		end
 end while selection != 5
-
-
-# emp_array = []
-# init_employees (emp_array)
-
-# Employee.get_employees
-
-# transfer emp_array
-
-# puts emp_array[0].location
